@@ -20,11 +20,4 @@ class Vendor
     end
     p_r
   end
-
-
-
-  # def total_revenue
-  #   @rider_log.values.sum * @admission_fee
-  # end
-
 end

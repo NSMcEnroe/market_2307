@@ -49,4 +49,14 @@ RSpec.describe Market do
       expect(@market.vendors_that_sell(@item4)).to eq([@vendor2])
     end
   end
+
+  describe '#sorted_item_list' do
+    it "can return the names of all items within the market" do
+      expect(@market.sorted_item_list).to eq(["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"])
+      @item5 = Item.new({name: "Apple", price: "$5.30"})
+      @item6 = Item.new({name: "Peanut Butter", price: "$4.25"})
+      @vendor2.stock(@item5, 25)
+      expect(@market.sorted_item_list).to eq(["Apple", "Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"])
+    end
+  end
 end
