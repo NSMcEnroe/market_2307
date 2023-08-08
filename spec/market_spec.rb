@@ -65,4 +65,10 @@ RSpec.describe Market do
       expect(@market.total_inventory).not_to eq({})
     end
   end
+
+  describe '#overstocked_items' do
+    it "can return an array of items if it meets certain conditions" do
+      expect(@market.overstocked_items).to eq([@item1])
+    end
+  end
 end

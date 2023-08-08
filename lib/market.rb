@@ -38,15 +38,26 @@ class Market
   end
 
   def total_inventory
-    t_inventory = Hash.new do |hash, key|
+    @t_inventory = Hash.new do |hash, key|
       hash[key] = {quantity: 0, vendors: []}
     end
     @vendors.each do |vendor|
       vendor.inventory.each do |item, amount|
-        t_inventory[item][:quantity] += amount
-        t_inventory[item][:vendors] << vendor
+        @t_inventory[item][:quantity] += amount
+        @t_inventory[item][:vendors] << vendor
       end
     end
-    t_inventory
+    @t_inventory
+  end
+
+  def overstocked_items
+    total_inventory
+    o_items = []
+    @t_inventory.each do |item, inner_hash|
+      if @t_inventory[item][:quantity] >= 50 && @t_inventory[item][:vendors].count >=2
+        o_items << item
+      end
+    end
+    o_items
   end
 end
